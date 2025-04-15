@@ -11,6 +11,13 @@ class SQLDatabase implements Database{
 	}
 }
 
+class MongoDatabase implements Database{
+	@Override
+	public void saveUser(String user) {
+		System.out.println("Saved to Mongo DB: " + user);
+	}
+}
+
 class User {
 	private Database db;
 	public User(Database db) {
@@ -26,6 +33,10 @@ public class GenericDataBaseOperation {
 		Database db = new SQLDatabase();
 		User user = new User(db);
 		user.saveUser("User 1");
+		
+		Database mongoDb = new MongoDatabase();
+		User user2 = new User(mongoDb);
+		user2.saveUser("User 2");
 	}
 
 }
